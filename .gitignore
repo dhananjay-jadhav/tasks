@@ -46,3 +46,7 @@ Thumbs.db
 test-output
 
 .yarn/install-state.gz
+
+# Next.js
+.next
+out
