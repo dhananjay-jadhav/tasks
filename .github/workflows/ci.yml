@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    # Match PRs targeting ANY branch (default)
-    # You can omit "branches" entirely OR use this:
-    branches: ["**"]
 
 jobs:
   install-and-check:
@@ -20,21 +17,32 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'yarn'
 
       - name: Enable Yarn (v4) via Corepack
         run: |
           corepack enable
           corepack prepare yarn@4.x --activate
-          yarn --version
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/patches
+            .pnp.*
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', 'package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies with Yarn 4
         run: yarn install --immutable
 
       - name: Run all checks in parallel
         run: |
-          yarn all:lint  &       # ESLint
-          yarn format:check &                        # Prettier
-          yarn all:build &       # Build
-          yarn all:test --exclude=tasks-ui &        # Tests
+          yarn all:lint &                   
+          yarn format:check &              
+          yarn all:build &                 
+          yarn all:test --exclude=tasks-ui &
           wait
