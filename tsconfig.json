@@ -14,6 +14,12 @@
     },
     {
       "path": "./apps/tasks-ui"
+    },
+    {
+      "path": "./libs/sql-db"
+    },
+    {
+      "path": "./libs/nosql-db"
     }
   ]
 }

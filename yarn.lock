@@ -4496,6 +4496,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tasks/nosql-db@workspace:libs/nosql-db":
+  version: 0.0.0-use.local
+  resolution: "@tasks/nosql-db@workspace:libs/nosql-db"
+  languageName: unknown
+  linkType: soft
+
 "@tasks/source@workspace:.":
   version: 0.0.0-use.local
   resolution: "@tasks/source@workspace:."
@@ -4562,6 +4568,12 @@ __metadata:
     typescript: "npm:~5.8.2"
     typescript-eslint: "npm:^8.29.0"
     webpack-cli: "npm:^5.1.4"
+  languageName: unknown
+  linkType: soft
+
+"@tasks/sql-db@workspace:libs/sql-db":
+  version: 0.0.0-use.local
+  resolution: "@tasks/sql-db@workspace:libs/sql-db"
   languageName: unknown
   linkType: soft
 
