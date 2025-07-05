@@ -1,0 +1,26 @@
+{
+  "name": "@tasks/tasks-api-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@tasks/tasks-api"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/tasks-api-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@tasks/tasks-api:build",
+          "@tasks/tasks-api:serve"
+        ]
+      }
+    }
+  }
+}
