@@ -1,0 +1,38 @@
+name: CI Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  install-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 20 with Corepack
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Enable Yarn (v4) via Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.x --activate
+          yarn --version
+
+      - name: Install dependencies with Yarn 4
+        run: yarn install --immutable
+
+      - name: Run all checks in parallel
+        run: |
+          yarn all:lint  &       # ESLint
+          yarn format:check &                        # Prettier
+          yarn all:build &       # Build
+          yarn all:test --exclude=tasks-ui &        # Tests
+          wait
