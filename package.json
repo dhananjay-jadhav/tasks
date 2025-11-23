@@ -8,18 +8,24 @@
     "all:build": "nx run-many --target=build --all",
     "all:test": "nx run-many --target=test --all --passWithNoTests",
     "format:check": "nx format:check",
-    "all:lint": "nx run-many --target=lint --all"
+    "format": "nx format:write",
+    "all:lint": "nx run-many --target=lint --all --fix"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/typeorm": "^11.0.0",
     "axios": "^1.6.0",
     "next": "~15.2.4",
+    "pg": "^8.16.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "typeorm": "^0.3.27"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
@@ -50,6 +56,7 @@
     "@testing-library/react": "16.1.0",
     "@types/jest": "^29.5.12",
     "@types/node": "~18.16.9",
+    "@types/pg": "^8",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "autoprefixer": "10.4.13",

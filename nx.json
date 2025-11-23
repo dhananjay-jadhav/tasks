@@ -28,7 +28,7 @@
           "watchDepsName": "watch-deps"
         }
       },
-      "exclude": ["libs/sql-db/*", "libs/nosql-db/*"]
+      "exclude": ["libs/sql-db/*", "libs/nosql-db/*", "libs/users/*"]
     },
     {
       "plugin": "@nx/webpack/plugin",
@@ -72,7 +72,7 @@
     },
     {
       "plugin": "@nx/js/typescript",
-      "include": ["libs/sql-db/*", "libs/nosql-db/*"],
+      "include": ["libs/sql-db/*", "libs/nosql-db/*", "libs/users/*"],
       "options": {
         "typecheck": {
           "targetName": "typecheck"
