@@ -1,135 +1,158 @@
-# Functional Requirements: Task Management Platform
+# Task Management Platform: Functional & Technical Specification
+
+This document defines both the functional requirements and the technical implementation guidelines for a production-ready task management backend. It is designed for teams aiming to build, maintain, or extend such a system.
+
+---
 
 ## 1. Overview
-A backend application for users to manage personal and work-related tasks. The platform supports full CRUD operations on tasks and projects, user authentication, robust error handling, integration with a third-party API (e.g., Google Calendar for deadlines or a public holidays API), security best practices, performance monitoring, and containerized deployment.
+
+A robust backend application for users to manage personal and work-related tasks. The platform supports full CRUD operations for tasks and projects, user authentication, error handling, integration with external APIs (such as calendar/holidays), and adheres to modern best-practices for security, performance, and extensibility.
 
 ---
 
-## 2. User Management and Authentication
+## 2. Functional Requirements
 
-**2.1 User Registration**
-- Users can register using a unique email and secure password.
-- Email format validated; passwords hashed before database storage.
+### 2.1 User Management & Authentication
 
-**2.2 User Login & JWT**
-- Users can log in to receive JWT access/refresh tokens.
-- All protected endpoints require valid JWT (auth guard).
+- **Registration:** Unique email and secure password; email validation; passwords hashed before storage.
+- **Login & JWT:** JWT access/refresh token issuance; all sensitive endpoints require valid JWT.
+- **Password Reset:** Secure, token-based reset flows with expiry logic.
+- **Profile:** Retrieve and update user profile (e.g., display name, avatar, timezone).
 
-**2.3 Password Reset**
-- Users can request a password reset (token-based, can be simulated for demo).
-- Link/token expiry managed securely.
+### 2.2 Project Management
 
-**2.4 User Profile**
-- Users can retrieve/update their profile (e.g., display name, avatar, timezone).
+- **CRUD:** Projects have name, color label, description, creation date, and owner.
+- **Ownership:** Users manage only their projects.
+- **Validation:** All project fields are validated.
 
----
+### 2.3 Task Management
 
-## 3. Project Management
+- **CRUD:** Tasks have title, description, due date, priority, status, tags, project, timestamps.
+- **Ownership:** Only accessible by the owning user.
+- **Listing & Filtering:** Pagination, sorting (by due, priority, status), filtering (by project, status, overdue), text search.
+- **Comments/Notes:** Add, edit, remove user-only comments per task.
 
-**3.1 CRUD Operations**
-- Users can create, retrieve (list/detail), update, and delete Projects.
-- Each Project includes: name, color (label), description, creation date, owner.
-- Users can only manage their own projects.
-- Input validation for all fields.
+### 2.4 External API Integration
 
----
+- **Calendar Sync:** Configurable integration for public holidays, Google Calendar, or similar APIs.
+- **Usage:** Indicate if task due dates fall on holidays. Optionally, push tasks to external calendars.
+- **Resilience:** API errors never break the app; implement error logs and retry logic.
 
-## 4. Task Management
+### 2.5 Notifications (Optional/Recommended)
 
-**4.1 CRUD Operations**
-- Users can create, retrieve (list/detail), update, and delete Tasks.
-- Each Task has: title, description, due date, priority, status (To Do, In Progress, Done), tags, project reference, creation/update date.
-- Tasks belong to a user and optionally to a project.
-- Users can only access/modify their own tasks.
+- Simulated or stub support for email/push notifications (e.g., task reminders).
 
-**4.2 Task Listing and Filtering**
-- Tasks listing supports pagination, sorting (by due date, priority/status), and filtering (by project, status, overdue).
-- Search/filter by text in title/description.
+### 2.6 Security & Auth
 
-**4.3 Task Comments/Notes**
-- Users can add/edit/remove comments or notes on their own tasks.
-- Each comment: text, timestamp, author (single-user context).
+- **Strong Passwords:** bcrypt/argon2.
+- **Token Security:** JWT signed with secrets; token refresh logic.
+- **Input Validation:** All endpoints.
+- **Rate Limiting:** On login and sensitive operations.
+- **Sensitive Data:** No raw secrets or passwords in logs or error messages.
 
----
+### 2.7 Error Handling, Logging & Monitoring
 
-## 5. External API Integration
+- **Centralized Exception Filter:** Standard error responses with context and timestamp.
+- **No Stack Traces Exposed:** Friendly user errors only.
+- **Performance:** Log request/response times, track error/slow query rates.
+- **Health Check:** `/health` endpoint.
 
-**5.1 Calendar Sync Example**
-- Users may link a public holidays API, Google Calendar, or similar (external API choice configurable).
-  - For each task with a due date, show if the date falls on a holiday (use public API).
-  - Optionally, push upcoming tasks as calendar events via external API (if available).
-- Errors from external API must not break app flow; error logs and retry logic implemented.
+### 2.8 Infrastructure & Config
 
----
+- **Docker:** Multi-stage Dockerfile for build/runtime; Compose support with PostgreSQL.
+- **Config:** Environment-variable based configuration, sample .env provided.
 
-## 6. Notifications (Optional but Recommended)
+### 2.9 API Documentation
 
-- Support for email/push notification integration can be stubbed or simulated (e.g., task due/overdue reminders).
+- **Swagger/OpenAPI:** Auto-generated, exposing all endpoints with example payloads and errors.
 
----
+### 2.10 Automated Testing
 
-## 7. Security & Auth
+- **Unit:** Services/utilities.
+- **E2E:** Auth, project/task/comments/external API flows.
 
-- All passwords stored securely (bcrypt/argon2).
-- Sensitive endpoints require authentication.
-- Input sanitation & validation on every endpoint.
-- Rate limiting on login & sensitive endpoints.
-- JWT tokens signed with environment-secret, refresh logic implemented.
+### 2.11 Advanced/Optional
 
----
+- **Task Recurrence:** Scheduled/repeating tasks.
+- **Role-Based Access:** Shared tasks, permission model.
+- **Dashboard/Stats:** Aggregate charts on tasks/projects.
+- **File Attachments:** Attach files/links to tasks (stub/mock for demo).
 
-## 8. Error Handling & Logging
+### 2.12 Excluded/Out-of-Scope
 
-- Centralized global exception filter.
-- All errors logged with timestamp and context.
-- User-facing errors are clear, never expose stack traces or sensitive info.
+- **Frontend:** Except Swagger/test clients.
+- **Real-time Collaboration:** No websockets/live editing.
 
 ---
 
-## 9. Performance Monitoring
+## 3. Technical Requirements
 
-- Request/response times logged (NestJS logger, Prometheus integration optional).
-- `/health` endpoint for uptime checks.
-- Error rate and slow query logging.
+### 3.1 Technology Stack
 
----
+- **Backend:** NestJS (TypeScript), modularized via feature modules.
+- **Database:** PostgreSQL (normalized schema, foreign keys, indexes), via TypeORM or Prisma.
+- **Auth:** JWT (access/refresh), bcrypt/argon2 password hashing.
+- **API Docs:** Swagger, maintained via decorators.
+- **Testing:** Jest (unit/E2E), Supertest for API.
+- **Containerization:** Docker/docker-compose for environment parity.
+- **Linting:** ESLint/Prettier.
+- **CI/CD:** GitHub Actions or equivalent.
 
-## 10. Dockerization & Config
+### 3.2 Project Structure
 
-- Multi-stage Dockerfile for app build and runtime.
-- Docker Compose support with DB (Postgres recommended).
-- Configuration via environment variables; sample .env file provided.
+- Modular, using NestJS feature modules (auth, users, tasks, projects, etc.).
+- Centralized config using validated environment variables.
+- Strict TypeScript enforcement.
+- Comprehensive README and contributing guidelines.
 
----
+### 3.3 Database
 
-## 11. API Documentation
+- Automated, version-controlled migrations/seeding.
+- Efficient schema with indexing to prevent N+1 queries.
 
-- Swagger/OpenAPI endpoint auto-generated.
-- Example payloads and error responses documented.
+### 3.4 Authentication & Security
 
----
+- JWT with rotation and revocation.
+- Strong password algorithm.
+- DTO validation (e.g., class-validator).
+- SQL injection/XSS prevention via parameterized queries and sanitation.
+- Rate-limited endpoints, strict CORS configuration.
 
-## 12. Automated Testing
+### 3.5 API Design
 
-- Unit tests for services/utilities.
-- E2E tests for main API flows (auth, task/project/task comment CRUD, external API integration).
+- RESTful, versioned.
+- List endpoints support pagination/sorting/filtering with standard query params.
+- Error responses are standardized and never leak sensitive info.
+- All endpoints documented with OpenAPI.
 
----
+### 3.6 Logging, Error Handling, and Monitoring
 
-## 13. Advanced/Bonus (Optional for Portfolio Enhancement)
+- Use NestJS Logger, with contextual metadata.
+- No stack traces in API responses.
+- Optional Sentry/Prometheus integration.
 
-- **Task Recurrence:** Tasks that repeat on a schedule.
-- **Role-Based Access:** e.g., “shared tasks” with other users (with proper permissions model).
-- **Dashboard/Statistics Endpoint:** Chart of tasks by status, overdue, per project, etc.
-- **Attach Files/Links to Tasks:** File upload feature (can be mocked for demo).
+### 3.7 Testing
 
----
+- 80%+ unit test coverage goal.
+- End-to-end tests for key flows and negative cases.
+- Mocks for all external dependencies.
 
-## 14. Out of Scope
+### 3.8 DevOps/Deployment
 
-- No client (frontend) beyond Swagger docs and tests.
-- No real-time collaboration (e.g., websockets).
+- Compose/Dockerfile for dev/prod.
+- No secrets in codebase; only configs via env.
+- Healthcheck endpoint for orchestration.
+- Database URLs/config per environment.
 
----
+### 3.9 Scalability & Extensibility
 
-**This document covers all must-have and extendable features expected in a modern, production-ready task management backend.**
+- Stateless API (sessionless JWT), scalable horizontally.
+- Async/await and non-blocking patterns throughout.
+- Modular code suitable for extension (tasks, notifications, calendar integrations, etc.).
+
+### 3.10 Miscellaneous
+
+- `.env.example` with all required variables.
+- Sample fixture data for onboarding.
+- Full contributing guide.
+
