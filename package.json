@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start:tasks-api": "nx serve tasks-api",
     "all:build": "nx run-many --target=build --all",
     "all:test": "nx run-many --target=test --all --passWithNoTests",
     "format:check": "nx format:check",
