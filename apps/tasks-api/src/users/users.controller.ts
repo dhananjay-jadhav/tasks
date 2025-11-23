@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Logger, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from '@tasks/users';
-import { CreateUser } from './dtos/createUser.dtos';
-import { User } from './dtos/user.dtos';
+import { CreateUserInput } from './dtos/create-user.type';
+import { User } from './dtos/user.type';
 
 @Controller('users')
 export class UsersController {
@@ -16,7 +16,9 @@ export class UsersController {
     try {
       const userEntity = await this.usersService.findOneOrFail(id);
       return {
-        ...userEntity
+        id: userEntity.id,
+        email: userEntity.email,
+        username: userEntity.username
       }
     } catch(err){
       this.logger.error(err);
@@ -25,13 +27,15 @@ export class UsersController {
   }
 
   @Post()
-  async createUser(@Body('createUser') createUser: CreateUser): Promise<User> {
+  async createUser(@Body() input: CreateUserInput): Promise<User> {
     try {
       const userEntity = await  this.usersService.createUser({
-         ...createUser
+         ...input
       });
       return {
-        ...userEntity
+        id: userEntity.id,
+        email: userEntity.email,
+        username: userEntity.username
       }
     } catch(err){
       this.logger.error('Error creating user', err);

@@ -1,7 +1,8 @@
 
 
 
-export class CreateUser {
+export class CreateUserInput {
+
   username: string;
 
   email: string;

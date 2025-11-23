@@ -1,4 +1,4 @@
-export class UpdateUser {
+export class UpdateUserInput {
   id: string;
 
   username: string;
