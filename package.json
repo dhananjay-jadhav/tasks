@@ -6,7 +6,7 @@
   "scripts": {
     "all:build": "nx run-many --target=build --all",
     "all:test": "nx run-many --target=test --all --passWithNoTests",
-    "format:check" : "nx format:check",
+    "format:check": "nx format:check",
     "all:lint": "nx run-many --target=lint --all"
   },
   "dependencies": {
