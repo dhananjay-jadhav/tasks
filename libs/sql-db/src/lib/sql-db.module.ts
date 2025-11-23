@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UserEntity } from './entities';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { ConfigModule } from '@nestjs/config';
       host: 'localhost',
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
+      entities: [UserEntity]
     }),
   ],
 })
-export class TasksSqlDbModule {}
+export class AuthDbModule {}

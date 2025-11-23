@@ -4553,81 +4553,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tasks/source@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@tasks/source@workspace:."
-  dependencies:
-    "@eslint/compat": "npm:^1.1.1"
-    "@eslint/eslintrc": "npm:^2.1.1"
-    "@eslint/js": "npm:^9.8.0"
-    "@nestjs/common": "npm:^11.0.0"
-    "@nestjs/config": "npm:^4.0.2"
-    "@nestjs/core": "npm:^11.0.0"
-    "@nestjs/mapped-types": "npm:*"
-    "@nestjs/platform-express": "npm:^11.0.0"
-    "@nestjs/schematics": "npm:^11.0.0"
-    "@nestjs/testing": "npm:^11.0.0"
-    "@nestjs/typeorm": "npm:^11.0.0"
-    "@next/eslint-plugin-next": "npm:^15.2.4"
-    "@nx/devkit": "npm:21.2.2"
-    "@nx/eslint": "npm:21.2.2"
-    "@nx/eslint-plugin": "npm:21.2.2"
-    "@nx/jest": "npm:21.2.2"
-    "@nx/js": "npm:21.2.2"
-    "@nx/nest": "npm:21.2.2"
-    "@nx/next": "npm:21.2.2"
-    "@nx/node": "npm:21.2.2"
-    "@nx/playwright": "npm:21.2.2"
-    "@nx/web": "npm:21.2.2"
-    "@nx/webpack": "npm:21.2.2"
-    "@nx/workspace": "npm:21.2.2"
-    "@playwright/test": "npm:^1.36.0"
-    "@swc-node/register": "npm:~1.9.1"
-    "@swc/cli": "npm:~0.6.0"
-    "@swc/core": "npm:~1.5.7"
-    "@swc/helpers": "npm:~0.5.11"
-    "@swc/jest": "npm:~0.2.36"
-    "@testing-library/dom": "npm:10.4.0"
-    "@testing-library/react": "npm:16.1.0"
-    "@types/jest": "npm:^29.5.12"
-    "@types/node": "npm:~18.16.9"
-    "@types/pg": "npm:^8"
-    "@types/react": "npm:19.0.0"
-    "@types/react-dom": "npm:19.0.0"
-    autoprefixer: "npm:10.4.13"
-    axios: "npm:^1.6.0"
-    babel-jest: "npm:^29.7.0"
-    eslint: "npm:^9.8.0"
-    eslint-config-next: "npm:^15.2.4"
-    eslint-config-prettier: "npm:^10.0.0"
-    eslint-plugin-import: "npm:2.31.0"
-    eslint-plugin-jsx-a11y: "npm:6.10.1"
-    eslint-plugin-playwright: "npm:^1.6.2"
-    eslint-plugin-react: "npm:7.35.0"
-    eslint-plugin-react-hooks: "npm:5.0.0"
-    jest: "npm:^29.7.0"
-    jest-environment-jsdom: "npm:^29.7.0"
-    jest-environment-node: "npm:^29.7.0"
-    next: "npm:~15.2.4"
-    nx: "npm:21.2.2"
-    pg: "npm:^8.16.3"
-    postcss: "npm:8.4.38"
-    prettier: "npm:^2.6.2"
-    react: "npm:19.0.0"
-    react-dom: "npm:19.0.0"
-    reflect-metadata: "npm:^0.1.13"
-    rxjs: "npm:^7.8.0"
-    tailwindcss: "npm:3.4.3"
-    ts-jest: "npm:^29.1.0"
-    ts-node: "npm:10.9.1"
-    tslib: "npm:^2.3.0"
-    typeorm: "npm:^0.3.27"
-    typescript: "npm:~5.8.2"
-    typescript-eslint: "npm:^8.29.0"
-    webpack-cli: "npm:^5.1.4"
-  languageName: unknown
-  linkType: soft
-
 "@tasks/sql-db@workspace:libs/sql-db":
   version: 0.0.0-use.local
   resolution: "@tasks/sql-db@workspace:libs/sql-db"
@@ -4818,6 +4743,15 @@ __metadata:
   dependencies:
     "@babel/types": "npm:^7.20.7"
   checksum: 10c0/5386f0af44f8746b063b87418f06129a814e16bb2686965a575e9d7376b360b088b89177778d8c426012abc43dd1a2d8ec3218bfc382280c898682746ce2ffbd
+  languageName: node
+  linkType: hard
+
+"@types/bcrypt@npm:^6":
+  version: 6.0.0
+  resolution: "@types/bcrypt@npm:6.0.0"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/48b66408838f5eb59791da5a77260cef59a5291ce0945f2caa3b5a6158c44b321b684b4aa7dce771852c63271c766cadd587374273451b300377a17015c1d51d
   languageName: node
   linkType: hard
 
@@ -6584,6 +6518,17 @@ __metadata:
   version: 0.6.1
   resolution: "batch@npm:0.6.1"
   checksum: 10c0/925a13897b4db80d4211082fe287bcf96d297af38e26448c857cee3e095c9792e3b8f26b37d268812e7f38a589f694609de8534a018b1937d7dc9f84e6b387c5
+  languageName: node
+  linkType: hard
+
+"bcrypt@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "bcrypt@npm:6.0.0"
+  dependencies:
+    node-addon-api: "npm:^8.3.0"
+    node-gyp: "npm:latest"
+    node-gyp-build: "npm:^4.8.4"
+  checksum: 10c0/006e69d4b3f0f021051fa9d998a768721a51dde28e7848e3e775ab608ba3476b25fa9262a7082ececbb0d493b0b6ca83673a6f3810b114fe90ec1bc6ae4b35b2
   languageName: node
   linkType: hard
 
@@ -12920,6 +12865,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-addon-api@npm:^8.3.0":
+  version: 8.5.0
+  resolution: "node-addon-api@npm:8.5.0"
+  dependencies:
+    node-gyp: "npm:latest"
+  checksum: 10c0/e4de0b4e70998fed7ef41933946f60565fc3a17cb83b7d626a0c0bb1f734cf7852e0e596f12681e7c8ed424163ee3cdbb4f0abaa9cc269d03f48834c263ba162
+  languageName: node
+  linkType: hard
+
 "node-fetch@npm:2.7.0":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
@@ -12938,6 +12892,17 @@ __metadata:
   version: 1.3.1
   resolution: "node-forge@npm:1.3.1"
   checksum: 10c0/e882819b251a4321f9fc1d67c85d1501d3004b4ee889af822fd07f64de3d1a8e272ff00b689570af0465d65d6bf5074df9c76e900e0aff23e60b847f2a46fbe8
+  languageName: node
+  linkType: hard
+
+"node-gyp-build@npm:^4.8.4":
+  version: 4.8.4
+  resolution: "node-gyp-build@npm:4.8.4"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: 10c0/444e189907ece2081fe60e75368784f7782cfddb554b60123743dfb89509df89f1f29c03bbfa16b3a3e0be3f48799a4783f487da6203245fa5bed239ba7407e1
   languageName: node
   linkType: hard
 
@@ -16472,6 +16437,83 @@ __metadata:
   checksum: 10c0/d4679609bb2a9b48eeaf84632b6d844128d2412b95b6de07d53d8ee8baf4ca0857c9331dfa510390a0727b550fd543d4d1a10995ad86cdf078423fbb8d99831d
   languageName: node
   linkType: hard
+
+"tasks@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "tasks@workspace:."
+  dependencies:
+    "@eslint/compat": "npm:^1.1.1"
+    "@eslint/eslintrc": "npm:^2.1.1"
+    "@eslint/js": "npm:^9.8.0"
+    "@nestjs/common": "npm:^11.0.0"
+    "@nestjs/config": "npm:^4.0.2"
+    "@nestjs/core": "npm:^11.0.0"
+    "@nestjs/mapped-types": "npm:*"
+    "@nestjs/platform-express": "npm:^11.0.0"
+    "@nestjs/schematics": "npm:^11.0.0"
+    "@nestjs/testing": "npm:^11.0.0"
+    "@nestjs/typeorm": "npm:^11.0.0"
+    "@next/eslint-plugin-next": "npm:^15.2.4"
+    "@nx/devkit": "npm:21.2.2"
+    "@nx/eslint": "npm:21.2.2"
+    "@nx/eslint-plugin": "npm:21.2.2"
+    "@nx/jest": "npm:21.2.2"
+    "@nx/js": "npm:21.2.2"
+    "@nx/nest": "npm:21.2.2"
+    "@nx/next": "npm:21.2.2"
+    "@nx/node": "npm:21.2.2"
+    "@nx/playwright": "npm:21.2.2"
+    "@nx/web": "npm:21.2.2"
+    "@nx/webpack": "npm:21.2.2"
+    "@nx/workspace": "npm:21.2.2"
+    "@playwright/test": "npm:^1.36.0"
+    "@swc-node/register": "npm:~1.9.1"
+    "@swc/cli": "npm:~0.6.0"
+    "@swc/core": "npm:~1.5.7"
+    "@swc/helpers": "npm:~0.5.11"
+    "@swc/jest": "npm:~0.2.36"
+    "@testing-library/dom": "npm:10.4.0"
+    "@testing-library/react": "npm:16.1.0"
+    "@types/bcrypt": "npm:^6"
+    "@types/jest": "npm:^29.5.12"
+    "@types/node": "npm:~18.16.9"
+    "@types/pg": "npm:^8"
+    "@types/react": "npm:19.0.0"
+    "@types/react-dom": "npm:19.0.0"
+    autoprefixer: "npm:10.4.13"
+    axios: "npm:^1.6.0"
+    babel-jest: "npm:^29.7.0"
+    bcrypt: "npm:^6.0.0"
+    eslint: "npm:^9.8.0"
+    eslint-config-next: "npm:^15.2.4"
+    eslint-config-prettier: "npm:^10.0.0"
+    eslint-plugin-import: "npm:2.31.0"
+    eslint-plugin-jsx-a11y: "npm:6.10.1"
+    eslint-plugin-playwright: "npm:^1.6.2"
+    eslint-plugin-react: "npm:7.35.0"
+    eslint-plugin-react-hooks: "npm:5.0.0"
+    jest: "npm:^29.7.0"
+    jest-environment-jsdom: "npm:^29.7.0"
+    jest-environment-node: "npm:^29.7.0"
+    next: "npm:~15.2.4"
+    nx: "npm:21.2.2"
+    pg: "npm:^8.16.3"
+    postcss: "npm:8.4.38"
+    prettier: "npm:^2.6.2"
+    react: "npm:19.0.0"
+    react-dom: "npm:19.0.0"
+    reflect-metadata: "npm:^0.1.13"
+    rxjs: "npm:^7.8.0"
+    tailwindcss: "npm:3.4.3"
+    ts-jest: "npm:^29.1.0"
+    ts-node: "npm:10.9.1"
+    tslib: "npm:^2.3.0"
+    typeorm: "npm:^0.3.27"
+    typescript: "npm:~5.8.2"
+    typescript-eslint: "npm:^8.29.0"
+    webpack-cli: "npm:^5.1.4"
+  languageName: unknown
+  linkType: soft
 
 "tcp-port-used@npm:^1.0.2":
   version: 1.0.2
