@@ -24,6 +24,20 @@ export class UsersService {
     });
   }
 
+  async findOrFailByEmail(email: string) {
+    return this.userRepo.findOneOrFail({
+      where: {
+        email,
+      },
+    });
+  }
+
+  async findByEmail(email: string) {
+    return this.userRepo.findOneBy({
+      email,
+    });
+  }
+
   async updateUser(user: Omit<UserEntity, 'password'>): Promise<ReturnUser> {
     await this.findOneOrFail(user.id);
     return this.userRepo.save({
