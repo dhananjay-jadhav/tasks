@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { UserEntity } from '@tasks/sql-db';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +9,7 @@ type ReturnUser = Omit<UserEntity, 'password'>;
 
 @Injectable()
 export class UsersService {
+  private readonly logger = new Logger(UsersService.name);
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepo: Repository<UserEntity>
@@ -25,11 +26,17 @@ export class UsersService {
   }
 
   async findOrFailByEmail(email: string) {
-    return this.userRepo.findOneOrFail({
-      where: {
-        email,
-      },
-    });
+    try {
+      const user = await this.userRepo.findOneOrFail({
+        where: {
+          email,
+        },
+      });
+      return user;
+    } catch (err) {
+      this.logger.error(err);
+      throw new Error(`User not found with email: ${email}`);
+    }
   }
 
   async findByEmail(email: string) {

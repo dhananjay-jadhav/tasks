@@ -10,6 +10,9 @@
       "path": "../../libs/sql-db"
     },
     {
+      "path": "../../libs/auth"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {

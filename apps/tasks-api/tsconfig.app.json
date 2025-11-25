@@ -26,6 +26,9 @@
     },
     {
       "path": "../../libs/sql-db/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/auth/tsconfig.lib.json"
     }
-  ]
+  ],
 }
