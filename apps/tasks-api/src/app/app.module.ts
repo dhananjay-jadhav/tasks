@@ -10,6 +10,7 @@ import { AuthApiModule } from '../auth-api/auth-api.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      cache: true
     }),
     AuthDbModule,
     UsersApiModule,
