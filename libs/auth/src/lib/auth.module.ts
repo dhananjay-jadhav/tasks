@@ -23,6 +23,6 @@ import { UsersModule } from '@tasks/users';
     }),
   ],
   providers: [JwtStrategyService, AuthService],
-  exports: [],
+  exports: [AuthService],
 })
 export class AuthModule {}

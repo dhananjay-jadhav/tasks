@@ -4,6 +4,12 @@
   "include": [],
   "references": [
     {
+      "path": "../sql-db"
+    },
+    {
+      "path": "../users"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

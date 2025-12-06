@@ -1,12 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import {AuthService  } from '@tasks/auth';
+import { Body, Controller, Post, Res } from '@nestjs/common';
+import {AuthService , IsGlobal, LoginInput,  } from 'auth';
+import type { Response } from 'express';
 
 @Controller('auth-api')
 export class AuthApiController {
-  // constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
-  // @Post()
-  // login(@Body() input: LoginInput) {
-  //   return this.authService.
-  // }
+  @IsGlobal()
+  @Post()
+  login(@Body() input: LoginInput , @Res() response: Response) {
+    return this.authService.login(input, response);
+  }
 }

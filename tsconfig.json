@@ -26,6 +26,9 @@
     },
     {
       "path": "./libs/auth"
+    },
+    {
+      "path": "./libs/auth"
     }
   ]
 }
